@@ -44,6 +44,7 @@ const TimerApp = () => {
         });
       }, 1000);
       setIntervalId(id);
+    //   console.log(id,"df")
     }
   };
 
@@ -64,7 +65,7 @@ const TimerApp = () => {
     <div>
       <input
         type="text"
-        placeholder="e.g., today 12am"
+        placeholder="e.g. , today 12am"
         value={inputTime}
         onChange={(e) => setInputTime(e.target.value)}
       />
