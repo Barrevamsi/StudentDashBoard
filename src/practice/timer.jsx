@@ -14,6 +14,7 @@ const TimerApp = () => {
       alert("Invalid format. Use 'today 12am' or 'tomorrow 6pm'");
       return;
     }
+    
     const [day, time] = parts;
     const match = time.match(/(\d+)(am|pm)/i);
     if (!match) {
