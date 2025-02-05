@@ -1,4 +1,4 @@
-/* Container Styling */
+/* Container*/
 .container {
     width: 90%;
     margin: auto;
@@ -16,7 +16,7 @@
     margin-bottom: 15px;
   }
   
-  /* Table Styling */
+  /* Table*/
   .class-table {
     width: 100%;
     border-collapse: collapse;
@@ -34,12 +34,11 @@
     font-weight: bold;
   }
   
-  /* Hover Effect */
   tr:hover {
     background-color: #f9f9f9;
   }
   
-  /* Class Information */
+  /* Class Info*/
   .class-info {
     display: flex;
     align-items: center;
@@ -58,10 +57,6 @@
   /* Staff Info */
   .staff-info {
     align-items: center;
-  }
-  
-  .staff-info div {
-    /* font-weight: b; */
   }
   
   /* Buttons */
