@@ -10,14 +10,14 @@
         "id":2,
         "course":"Graphic Designing",
         "stafname":"Priya sweety",
-        "date":"Today 11pm",
+        "date":"Today 3pm",
         "book now":false
     },
     {
         "id":3,
         "course":"Design Hierarchy",
         "stafname":"Leslie Alexander",
-        "date":"Today 1pm",
+        "date":"Today 4pm",
         "book now":false
     },
     {
