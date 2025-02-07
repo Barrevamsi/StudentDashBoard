@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import classData from "../components/data.json";
 import "./AllCSS.css";
@@ -11,7 +10,7 @@ function AllClasses() {
     if (!confirm("Do you want to book now?")) return;
 
     const now = new Date();
-    // console.log(now,"nowww") 
+    // console.log(now,"nowww")
     const [day, time] = dateString.split(" ");
     const match = time.match(/(\d+)(am|pm)/i);
 
@@ -28,13 +27,17 @@ function AllClasses() {
       classDate.setDate(now.getDate() + 1);
     }
 
-    classDate.setHours(ampm.toLowerCase() === "pm" ? (parseInt(hour) % 12) + 12 : parseInt(hour) % 12);
+    classDate.setHours(
+      ampm.toLowerCase() === "pm"
+        ? (parseInt(hour) % 12) + 12
+        : parseInt(hour) % 12
+    );
     classDate.setMinutes(0);
     classDate.setSeconds(0);
-
-    const diff = Math.floor((classDate - now) / 1000); //remove milli seconds
     // console.log(classDate,"classdate")
     // console.log(classDate-now,"weeew")
+    const diff = Math.floor((classDate - now) / 1000); //remove milli seconds
+
     // console.log(diff,"diff")
     if (diff < -3600) {
       alert("The class time has already passed!");
@@ -44,11 +47,16 @@ function AllClasses() {
     setData((prevData) =>
       prevData.map((cls) =>
         cls.id === id
-          ? { ...cls, booked: true, timer: Math.max(diff, 0), stardedtime: diff < 0 ? -diff : null }
+          ? {
+              ...cls,
+              booked: true,
+              timer: Math.max(diff, 0),
+              stardedtime: diff < 0 ? -diff : null,
+            }
           : cls
       )
     );
-    console.log(data,"after the map added")
+    console.log(data, "after the map added");
 
     const interval = setInterval(() => {
       setData((prevData) =>
@@ -56,7 +64,10 @@ function AllClasses() {
           if (cls.id === id) {
             if (cls.timer > 0) {
               return { ...cls, timer: cls.timer - 1 };
-            } else  if (cls.timer === 0 && (cls.stardedtime === null || cls.stardedtime < 3600)) {
+            } else if (
+              cls.timer === 0 &&
+              (cls.stardedtime === null || cls.stardedtime < 3600)
+            ) {
               return { ...cls, stardedtime: (cls.stardedtime ?? 0) + 1 };
             } else {
               clearInterval(interval);
@@ -70,7 +81,7 @@ function AllClasses() {
   }
 
   function formatTime(seconds) {
-    if (seconds === null) return ;
+    if (seconds === null) return;
     if (seconds <= 0) return "00:00:00";
     const hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
@@ -92,6 +103,7 @@ function AllClasses() {
           Booked Only
         </label>
       </div>
+
       {/* Table */}
       <table className="class-table">
         <thead>
@@ -104,7 +116,7 @@ function AllClasses() {
         <tbody>
           {console.log(data)}
           {data
-            .filter( (val) => !showBookedOnly || val.booked )
+            .filter((val) => !showBookedOnly || val.booked)
             .map((val, ind) => (
               <tr key={ind}>
                 <td>
@@ -118,7 +130,7 @@ function AllClasses() {
                 </td>
                 <td>
                   <div className="staff-info">
-                    <div style={{fontWeight:"bold"}}>{val.stafname}</div>
+                    <div style={{ fontWeight: "bold" }}>{val.stafname}</div>
                     <div className="additional-details">Additional details</div>
                   </div>
                 </td>
@@ -135,7 +147,12 @@ function AllClasses() {
                       <div className="ended-text">Class Ended</div>
                     )
                   ) : (
-                    <button className="book-btn" onClick={() => bookNow(val.id, val.date)}>Book Now</button>
+                    <button
+                      className="book-btn"
+                      onClick={() => bookNow(val.id, val.date)}
+                    >
+                      Book Now
+                    </button>
                   )}
                 </td>
               </tr>
